@@ -6,6 +6,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import TableEmployees from "../components/TableEmployees";
+import TableEmployeesShadcn from "../components/TableEmployeesShadcn";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -40,6 +41,7 @@ export default function Dashboard() {
             captionLayout="dropdown"
           />
           <TableEmployees />
+          <TableEmployeesShadcn />
         </>
       )}
     </main>
