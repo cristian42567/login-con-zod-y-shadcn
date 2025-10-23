@@ -11,12 +11,10 @@ export default function Dashboard() {
     const loggedIn = localStorage.getItem("loggedIn");
 
     if (!loggedIn) {
-      router.push("/"); // Redirige directamente
-      return; // Salimos del efecto
+      router.push("/");
+      return; 
     }
 
-    // Para evitar renderizado en cascada, usamos setTimeout 0
-    // Esto hace que setState se ejecute en la siguiente "tick"
     setTimeout(() => setIsLogged(true), 0);
   }, [router]);
 

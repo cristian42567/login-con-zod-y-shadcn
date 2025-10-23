@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { mockUsers } from "../lib/auth";
+import { loginSchema, type LoginData } from "../lib/schemas";
 
 export default function Login() {
   const router = useRouter();
@@ -12,6 +13,17 @@ export default function Login() {
 
   function handleLogin(e: React.FormEvent) {
     e.preventDefault();
+
+    const formData: LoginData = { username, password };
+
+    const validation = loginSchema.safeParse(formData);
+
+    if (!validation.success) {
+      const firstError =
+        validation.error.issues[0]?.message || "Error en el formulario";
+      setError(firstError);
+      return;
+    }
 
     const userExist = mockUsers.find(
       (u) => u.username === username && u.password == password
