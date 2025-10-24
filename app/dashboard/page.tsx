@@ -7,11 +7,13 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import TableEmployees from "../components/TableEmployees";
 import TableEmployeesShadcn from "../components/TableEmployeesShadcn";
+import { useQueryState } from "nuqs";
 
 export default function Dashboard() {
   const router = useRouter();
   const [isLogged, setIsLogged] = useState<boolean | null>(null);
   const [date, setDate] = useState<Date | undefined>(new Date());
+  const [name, setName] = useQueryState("name");
 
   useEffect(() => {
     const loggedIn = localStorage.getItem("loggedIn");
@@ -44,6 +46,19 @@ export default function Dashboard() {
           <TableEmployeesShadcn />
         </>
       )}
+
+      <div className="flex flex-col items-center justify-center mt-20 space-y-4">
+        <input
+          className="w-64 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition placeholder-gray-400 text-gray-800"
+          placeholder="Aquí va el parámetro a pasar"
+          value={name || ""}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <button onClick={() => setName(null)}>Resetar</button>
+        <p className="text-lg text-gray-800">
+          ¡Hola, {name || "persona desconocida"}!
+        </p>
+      </div>
     </main>
   );
 }

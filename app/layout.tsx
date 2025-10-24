@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { NuqsAdapter } from "nuqs/adapters/react";
 
 export const metadata: Metadata = {
   title: "Login - Cristian",
@@ -14,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
-        {children}
+        <NuqsAdapter>{children}</NuqsAdapter>
       </body>
     </html>
   );
