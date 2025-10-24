@@ -54,7 +54,7 @@ export default function Dashboard() {
           value={name || ""}
           onChange={(e) => setName(e.target.value)}
         />
-        <button onClick={() => setName(null)}>Resetar</button>
+        <button className="border border-b-blue-700 rounded-lg p-5" onClick={() => setName(null)}>Resetar parámetro</button>
         <p className="text-lg text-gray-800">
           ¡Hola, {name || "persona desconocida"}!
         </p>
